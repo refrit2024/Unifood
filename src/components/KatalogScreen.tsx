@@ -651,7 +651,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                     return (
                       <div
                         key={ord.id}
-                        className={`rounded-lg p-4 sm:p-5 border transition-all flex flex-col justify-between gap-3.5 ${
+                        className={`rounded-2xl p-4 sm:p-5 border transition-all flex flex-col justify-between gap-3.5 ${
                           ord.status === 'ready_pickup'
                             ? 'bg-emerald-50/40 border-emerald-400 ring-1 ring-emerald-400/40 shadow-sm'
                             : ord.status === 'completed'
@@ -682,21 +682,21 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                             </span>
                           </div>
 
-                          {/* Context Tags Row */}
+                          {/* Context Tags Row - Varied Tag Geometry */}
                           <div className="flex items-center gap-1.5 flex-wrap">
                             {ord.fulfillmentType === 'dine_in' ? (
-                              <span className="text-[11px] font-bold text-amber-900 bg-amber-100/90 border border-amber-200 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                              <span className="text-[11px] font-bold text-amber-900 bg-amber-100/90 border border-amber-200 pl-2.5 pr-3 py-0.5 rounded-l-full rounded-r-md flex items-center gap-1">
                                 <span className="material-symbols-outlined text-[13px]">table_restaurant</span>
                                 Makan di Meja {ord.tableNumber || '-'}
                               </span>
                             ) : (
-                              <span className="text-[11px] font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                              <span className="text-[11px] font-medium text-slate-700 bg-slate-100 border border-slate-200 pl-2.5 pr-3 py-0.5 rounded-l-full rounded-r-md flex items-center gap-1">
                                 <span className="material-symbols-outlined text-[13px]">shopping_bag</span>
                                 Ambil di Stan
                               </span>
                             )}
                             {isAutoPaid ? (
-                              <span className="text-[11px] font-medium text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                              <span className="text-[11px] font-medium text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
                                 <span className="material-symbols-outlined text-[13px] text-emerald-600">verified</span>
                                 Lunas Otomatis
                               </span>
@@ -801,7 +801,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                             <button
                               type="button"
                               onClick={() => setSelectedReceiptOrder(ord)}
-                              className={`min-h-[40px] px-3 py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-all ${
+                              className={`min-h-[40px] px-3 py-2 rounded-l-full rounded-r-xl text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-all ${
                                 ord.status === 'completed'
                                   ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs'
                                   : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
@@ -813,7 +813,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                             <button
                               type="button"
                               onClick={() => onSelectStall(ord.stallId)}
-                              className="min-h-[40px] px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-all"
+                              className="min-h-[40px] px-3 py-2 rounded-r-full rounded-l-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-all"
                             >
                               <span className="material-symbols-outlined text-[16px]">storefront</span>
                               <span>Buka Stan</span>
@@ -830,8 +830,8 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
         ) : (
           /* SUB-TAB: SEMUA KANTIN / EKSPLOR MENU / FAVORIT */
           <div className="flex flex-col gap-3.5 sm:gap-4">
-            {/* 3. HERO BANNER & SEARCH SECTION - Modern Crisp Style */}
-            <section className="relative overflow-hidden rounded-xl bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white p-4 sm:p-5 shadow-xs border border-emerald-800/80">
+            {/* 3. HERO BANNER & SEARCH SECTION - Dynamic Architectural Asymmetric Curves */}
+            <section className="relative overflow-hidden rounded-tl-3xl rounded-br-3xl rounded-tr-xl rounded-bl-xl bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white p-4 sm:p-5 shadow-xs border border-emerald-800/80">
               {/* Subtle appetizing dual glow: emerald + warm sunset orange */}
               <div className="absolute -top-16 -right-12 w-60 h-60 rounded-full bg-orange-500/15 blur-3xl pointer-events-none"></div>
               <div className="absolute -bottom-16 -left-12 w-60 h-60 rounded-full bg-emerald-400/20 blur-3xl pointer-events-none"></div>
@@ -843,49 +843,39 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                   </h1>
                 </div>
 
-                {/* Search Bar - Prominent Stadium Oval Capsule */}
+                {/* Search Bar - Google-Style Pure Stadium Oval Capsule */}
                 <form
                   onSubmit={(e) => e.preventDefault()}
                   className="w-full max-w-3xl relative"
                 >
-                  <div className="relative flex items-center w-full">
+                  <div className="group relative flex items-center w-full h-12 sm:h-13.5 px-3.5 sm:px-4 rounded-full bg-white border border-slate-200/90 hover:border-slate-300 focus-within:border-emerald-500 focus-within:ring-4 focus-within:ring-emerald-500/20 shadow-lg shadow-emerald-950/20 hover:shadow-xl transition-all">
+                    {/* Google-Style Magnifying Glass Icon */}
+                    <div className="flex items-center justify-center text-slate-400 group-focus-within:text-emerald-600 transition-colors shrink-0 mr-2.5 sm:mr-3">
+                      <span className="material-symbols-outlined text-[22px] sm:text-[24px]">search</span>
+                    </div>
+
+                    {/* Google-Style Borderless Clean Input */}
                     <input
                       ref={searchInputRef}
                       type="search"
                       id="menuSearchInput"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Cari menu makanan, minuman, atau stan (tekan '/' untuk cari)..."
-                      className="w-full h-12 sm:h-13.5 pl-12 sm:pl-14 pr-24 sm:pr-28 rounded-full bg-white text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm font-medium border-2 border-emerald-400/80 shadow-lg shadow-emerald-950/25 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-400/30 focus:outline-none transition-all"
+                      placeholder="Cari menu makanan, minuman, atau stan kantin..."
+                      className="w-full h-full bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm font-medium pr-2 appearance-none"
                     />
-                    <div className="absolute left-1.5 sm:left-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center pointer-events-none shadow-xs">
-                      <span className="material-symbols-outlined text-[20px] sm:text-[22px]">search</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2">
-                      {searchQuery ? (
-                        <button
-                          type="button"
-                          onClick={() => setSearchQuery('')}
-                          aria-label="Bersihkan pencarian"
-                          className="w-8 h-8 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 hover:bg-stone-100 cursor-pointer transition-colors"
-                        >
-                          <span className="material-symbols-outlined text-[18px]">close</span>
-                        </button>
-                      ) : (
-                        <kbd
-                          title="Tekan '/' atau 'Ctrl+K' untuk mencari"
-                          className="hidden sm:inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-stone-100 border border-stone-200 text-[10px] font-mono text-stone-500 select-none shadow-2xs"
-                        >
-                          /
-                        </kbd>
-                      )}
+
+                    {/* Clear Button (Visible only when text is entered, like Google) */}
+                    {searchQuery && (
                       <button
-                        type="submit"
-                        className="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-xs cursor-pointer active:scale-95 transition-all"
+                        type="button"
+                        onClick={() => setSearchQuery('')}
+                        aria-label="Bersihkan pencarian"
+                        className="w-8 h-8 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 hover:bg-stone-100 cursor-pointer transition-colors shrink-0"
                       >
-                        Cari
+                        <span className="material-symbols-outlined text-[18px]">close</span>
                       </button>
-                    </div>
+                    )}
                   </div>
                 </form>
 
@@ -1119,9 +1109,10 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                     <div
                       key={`${stall.id}-${item.id}`}
                       onClick={() => onSelectStall(stall.id)}
-                      className="bg-white rounded-lg p-3 shadow-xs border border-stone-200 hover:shadow-md hover:border-emerald-300 transition-all flex gap-3 cursor-pointer group"
+                      className="bg-white rounded-2xl p-3 shadow-xs border border-stone-200 hover:shadow-md hover:border-emerald-300 transition-all flex gap-3 cursor-pointer group"
                     >
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-md overflow-hidden bg-slate-100 shrink-0 relative border border-slate-200/80">
+                      {/* Organic Leaf Shaped Food Thumbnail */}
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md overflow-hidden bg-slate-100 shrink-0 relative border border-slate-200/80 shadow-2xs">
                         <img
                           src={item.imageCatalog}
                           alt={item.altCatalog}
@@ -1149,7 +1140,8 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                         </div>
 
                         <div className="flex items-center justify-between pt-1">
-                          <span className="text-sm font-black text-emerald-700">
+                          {/* Ticket Tag Shaped Price Badge */}
+                          <span className="text-xs sm:text-sm font-black text-emerald-800 bg-emerald-50 border border-emerald-200/90 pl-2.5 pr-2 py-0.5 rounded-l-full rounded-r-md">
                             Rp {item.price.toLocaleString('id-ID')}
                           </span>
                           <span className="text-[11px] font-semibold text-slate-400 group-hover:text-emerald-700 flex items-center gap-0.5">
@@ -1174,7 +1166,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                 </div>
 
                 {filteredStalls.length === 0 ? (
-                  <div className="bg-white rounded-xl p-8 sm:p-12 text-center flex flex-col items-center gap-3 shadow-xs border border-slate-200">
+                  <div className="bg-white rounded-2xl p-8 sm:p-12 text-center flex flex-col items-center gap-3 shadow-xs border border-slate-200">
                     <span className="material-symbols-outlined text-[48px] text-slate-300">
                       search_off
                     </span>
@@ -1187,13 +1179,13 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                     <button
                       type="button"
                       onClick={resetAllFilters}
-                      className="mt-2 min-h-[40px] px-5 py-2 rounded-md bg-emerald-600 text-white font-bold text-xs cursor-pointer shadow-sm active:scale-95"
+                      className="mt-2 min-h-[40px] px-5 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs cursor-pointer shadow-sm active:scale-95"
                     >
                       Reset Semua Filter
                     </button>
                   </div>
                 ) : (
-                  /* 6. MODERN CRISP STALL CARD GRID */
+                  /* 6. RICH GEOMETRY STALL CARD GRID */
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3.5 sm:gap-4">
                     {filteredStalls.map((rawStall, idx) => {
                       const stall = normalizeStallLocation(rawStall, idx);
@@ -1216,7 +1208,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                       return (
                         <article
                           key={stall.id}
-                          className="group bg-white rounded-lg sm:rounded-xl shadow-2xs hover:shadow-md border border-stone-200 hover:border-emerald-400 overflow-hidden flex flex-col justify-between transition-all duration-200"
+                          className="group bg-white rounded-2xl shadow-2xs hover:shadow-md border border-stone-200 hover:border-emerald-400 overflow-hidden flex flex-col justify-between transition-all duration-200"
                         >
                           <div>
                             {/* Card Hero Image */}
@@ -1231,10 +1223,11 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                               {/* Subtle bottom gradient overlay for readability */}
                               <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-black/20"></div>
 
-                              {/* Top Left Status Indicator - Crisp Tags */}
+                              {/* Top Left Status Indicator - Stamp & Capsule Tags */}
                               <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap">
+                                {/* Asymmetric Campus Seal Stamp Shape */}
                                 <span
-                                  className={`px-2.5 py-0.5 rounded-md text-xs font-semibold shadow-sm backdrop-blur-md ${
+                                  className={`px-2.5 py-0.5 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs text-xs font-bold shadow-sm backdrop-blur-md ${
                                     stall.isOpen
                                       ? 'bg-emerald-600 text-white'
                                       : 'bg-slate-800/90 text-slate-200'
@@ -1243,7 +1236,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                   {stall.isOpen ? 'Buka' : 'Tutup'}
                                 </span>
 
-                                <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-black/60 backdrop-blur-md text-white shadow-sm flex items-center gap-1">
+                                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-black/60 backdrop-blur-md text-white shadow-sm flex items-center gap-1">
                                   <span className="material-symbols-outlined text-[13px] text-amber-400">
                                     timer
                                   </span>
@@ -1251,15 +1244,19 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                 </span>
                               </div>
 
-                              {/* Favorite Button - Modern Crisp Square */}
+                              {/* Favorite Button - Borderless Floating Emote */}
                               <button
                                 type="button"
                                 aria-label={`Simpan favorit ${stall.name}`}
                                 onClick={() => onToggleFavoriteStall(stall.id)}
-                                className="absolute top-2.5 right-2.5 min-h-[38px] min-w-[38px] rounded-lg bg-white/90 backdrop-blur-md hover:bg-white text-rose-500 flex items-center justify-center shadow-xs cursor-pointer active:scale-90 transition-all border border-stone-200/60"
+                                className="absolute top-2 right-2 p-2 flex items-center justify-center cursor-pointer active:scale-75 hover:scale-115 transition-transform duration-200 group/fav focus:outline-none z-10"
                               >
                                 <span
-                                  className="material-symbols-outlined text-[19px]"
+                                  className={`material-symbols-outlined text-[26px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.65)] transition-colors duration-200 ${
+                                    isFav
+                                      ? 'text-rose-500 scale-105'
+                                      : 'text-white/90 hover:text-rose-400 group-hover/fav:text-rose-300'
+                                  }`}
                                   style={{
                                     fontVariationSettings: isFav ? "'FILL' 1" : "'FILL' 0",
                                   }}
@@ -1270,21 +1267,23 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
 
                               {/* Bottom Overlay Info on Image */}
                               <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-white text-xs">
-                                <span className="flex items-center gap-1 bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-md font-medium text-[11px]">
+                                {/* Ticket Tag Location Chip */}
+                                <span className="flex items-center gap-1 bg-black/65 backdrop-blur-xs pl-2 pr-2.5 py-0.5 rounded-l-full rounded-r-md font-medium text-[11px]">
                                   <span className="material-symbols-outlined text-[13px] text-emerald-400">
                                     location_on
                                   </span>
                                   <span>{stall.locationDetail} · <span className="tabular-nums">{stall.distanceMeters}m</span></span>
                                 </span>
 
-                                <span className="flex items-center gap-1 bg-amber-400 text-slate-950 font-bold px-2 py-0.5 rounded-md shadow-xs tabular-nums text-xs">
+                                {/* Teardrop Pin Rating Badge */}
+                                <span className="flex items-center gap-1 bg-amber-400 text-slate-950 font-bold px-2.5 py-0.5 rounded-tl-full rounded-tr-full rounded-br-full rounded-bl-xs shadow-xs tabular-nums text-xs">
                                   <span className="material-symbols-outlined text-[13px]">star</span>
                                   <span>{stall.rating}</span>
                                 </span>
                               </div>
                             </div>
 
-                            {/* Card Body - Crisp & Spacious */}
+                            {/* Card Body - Varied & Spacious */}
                             <div className="p-4 flex flex-col gap-3">
                               {/* Stall Identity & Specialty */}
                               <div className="flex flex-col gap-1">
@@ -1305,8 +1304,9 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                     </span>
                                   </div>
 
+                                  {/* Asymmetric Student Banner */}
                                   {stall.isStudentEntrepreneur && (
-                                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-violet-700 bg-violet-50 border border-violet-200 px-1.5 py-0.5 rounded shrink-0">
+                                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-violet-700 bg-violet-50 border border-violet-200 pl-2 pr-2.5 py-0.5 rounded-r-full rounded-l-xs shrink-0">
                                       <span className="material-symbols-outlined text-[12px]">school</span>
                                       Usaha Mahasiswa
                                     </span>
@@ -1349,7 +1349,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                 </span>
                                 <div className="flex items-center gap-1.5 text-[10px] font-semibold text-slate-500">
                                   {stall.paymentMethods && stall.paymentMethods.length > 0 ? (
-                                    <span className="text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">
+                                    <span className="text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">
                                       {stall.paymentMethods.slice(0, 2).join(' / ')}
                                       {stall.paymentMethods.length > 2 && ` +${stall.paymentMethods.length - 2}`}
                                     </span>
@@ -1382,11 +1382,11 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                         e.stopPropagation();
                                         onSelectStall(stall.id);
                                       }}
-                                      className="group/item flex items-center gap-2.5 p-1.5 rounded-md bg-slate-50/80 hover:bg-emerald-50/70 border border-slate-200/70 hover:border-emerald-300 transition-all duration-150 cursor-pointer"
+                                      className="group/item flex items-center gap-2.5 p-1.5 rounded-xl rounded-tr-xs bg-slate-50/80 hover:bg-emerald-50/70 border border-slate-200/70 hover:border-emerald-300 transition-all duration-150 cursor-pointer"
                                       title={`Lihat detail ${item.name}`}
                                     >
-                                      {/* Mini Food Thumbnail */}
-                                      <div className="relative w-11 h-11 rounded overflow-hidden bg-slate-200 shrink-0 border border-slate-200/80">
+                                      {/* Mini Food Thumbnail - Organic Leaf Shape */}
+                                      <div className="relative w-11 h-11 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden bg-slate-200 shrink-0 border border-slate-200/80 shadow-2xs">
                                         {item.imageCatalog ? (
                                           <img
                                             src={item.imageCatalog}

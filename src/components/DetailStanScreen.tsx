@@ -598,11 +598,11 @@ export const DetailStanScreen: React.FC<DetailStanScreenProps> = ({
 
             {/* Top Badges */}
             <div className="absolute top-4 left-4 flex items-center gap-2">
-              <span className="px-3 py-1 rounded-md bg-emerald-600/95 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1.5 shadow-xs border border-emerald-500/50">
+              <span className="px-3 py-1 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs bg-emerald-600/95 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1.5 shadow-xs border border-emerald-500/50">
                 <span className="w-2 h-2 rounded-full bg-emerald-300 animate-ping"></span>
                 <span>{stall.isOpen ? 'Buka Sekarang' : 'Tutup'}</span>
               </span>
-              <span className="px-3 py-1 rounded-md bg-black/60 backdrop-blur-md text-white text-xs font-semibold border border-white/10">
+              <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-semibold border border-white/10">
                 {stall.hours} WIB
               </span>
             </div>
@@ -628,9 +628,10 @@ export const DetailStanScreen: React.FC<DetailStanScreenProps> = ({
                 </p>
               </div>
 
-              {/* Rating & Distance Badges */}
+              {/* Rating & Distance Badges - Varied Corner Geometry */}
               <div className="flex items-center gap-2.5 flex-wrap self-start sm:self-auto">
-                <div className="flex items-center gap-1 bg-amber-50 border border-amber-200 text-amber-900 px-3 py-1.5 rounded-lg font-black text-sm">
+                {/* Teardrop Pin Rating Badge */}
+                <div className="flex items-center gap-1 bg-amber-50 border border-amber-200 text-amber-900 px-3 py-1.5 rounded-tl-full rounded-tr-full rounded-br-full rounded-bl-xs font-black text-sm shadow-2xs">
                   <span className="material-symbols-outlined text-[17px] text-amber-500">
                     star
                   </span>
@@ -640,7 +641,8 @@ export const DetailStanScreen: React.FC<DetailStanScreenProps> = ({
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1 bg-emerald-50 border border-emerald-200 text-emerald-800 px-3 py-1.5 rounded-lg font-bold text-xs">
+                {/* Ticket Tag Distance Badge */}
+                <div className="flex items-center gap-1 bg-emerald-50 border border-emerald-200 text-emerald-800 pl-2.5 pr-3 py-1.5 rounded-l-full rounded-r-md font-bold text-xs shadow-2xs">
                   <span className="material-symbols-outlined text-[16px] text-emerald-600">
                     location_on
                   </span>
@@ -815,7 +817,7 @@ export const DetailStanScreen: React.FC<DetailStanScreenProps> = ({
                   return (
                     <article
                       key={item.id}
-                      className={`group bg-white rounded-lg p-4 shadow-xs hover:shadow-md border border-stone-200 flex flex-col justify-between transition-all duration-200 ${
+                      className={`group bg-white rounded-2xl p-4 shadow-xs hover:shadow-md border border-stone-200 flex flex-col justify-between transition-all duration-200 ${
                         !isAvailable ? 'opacity-75 bg-stone-50/70' : 'hover:border-emerald-300'
                       }`}
                     >
@@ -823,7 +825,8 @@ export const DetailStanScreen: React.FC<DetailStanScreenProps> = ({
                       <div className="flex gap-3.5 items-start justify-between">
                         <div className="flex flex-col flex-1 min-w-0 pr-1">
                           <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
+                            {/* Ticket Tag Kategori Badge */}
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 pl-2 pr-2.5 py-0.5 rounded-l-full rounded-r-xs border border-emerald-200/60">
                               {item.category}
                             </span>
                             {isAvailable ? (
@@ -851,8 +854,8 @@ export const DetailStanScreen: React.FC<DetailStanScreenProps> = ({
                           </p>
                         </div>
 
-                        {/* Square Food Thumbnail */}
-                        <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-md overflow-hidden bg-slate-100 shrink-0 relative border border-slate-200/60 shadow-2xs">
+                        {/* Organic Leaf Shaped Food Thumbnail */}
+                        <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md overflow-hidden bg-slate-100 shrink-0 relative border border-slate-200/60 shadow-2xs">
                           <img
                             src={item.imageCatalog}
                             alt={item.altCatalog}
@@ -874,8 +877,10 @@ export const DetailStanScreen: React.FC<DetailStanScreenProps> = ({
                         <div className="flex flex-col min-w-0">
                           <span className="text-[10px] text-slate-400 font-medium">Harga Resmi</span>
                           <span
-                            className={`text-base sm:text-lg font-black tracking-tight tabular-nums ${
-                              isAvailable ? 'text-emerald-700' : 'text-slate-400'
+                            className={`text-sm sm:text-base font-black tracking-tight tabular-nums pl-2.5 pr-3 py-0.5 rounded-l-full rounded-r-md border ${
+                              isAvailable
+                                ? 'text-emerald-900 bg-emerald-50 border-emerald-200/90'
+                                : 'text-slate-400 bg-slate-100 border-slate-200'
                             }`}
                           >
                             Rp {item.price.toLocaleString('id-ID')}
@@ -997,7 +1002,7 @@ export const DetailStanScreen: React.FC<DetailStanScreenProps> = ({
                   stall.reviews.map((rev) => (
                     <div
                       key={rev.id}
-                      className="p-3 rounded-md bg-slate-50 border border-slate-200 flex flex-col gap-1.5"
+                      className="p-3.5 rounded-2xl rounded-bl-xs bg-slate-50 border border-slate-200/90 flex flex-col gap-1.5 shadow-2xs"
                     >
                       <div className="flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2">

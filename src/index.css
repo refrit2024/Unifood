@@ -66,7 +66,7 @@
   --radius-lg: 0.25rem;
   --radius-xl: 0.5rem;
   --radius-2xl: 0.75rem;
-  --radius-full: 0.75rem;
+  --radius-full: 9999px;
 
   --spacing-gutter: 1rem;
   --spacing-gutter-desktop: 1.5rem;
