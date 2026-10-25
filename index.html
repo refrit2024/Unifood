@@ -20,25 +20,82 @@
   </head>
   <body class="bg-slate-50 text-slate-900 antialiased selection:bg-emerald-100 selection:text-emerald-900 font-sans">
     <div id="root">
-      <!-- Instant Native Preloader (Hilang otomatis begitu React selesai render) -->
-      <div id="unifood-initial-loader" style="position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #fafaf9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; z-index: 9999; gap: 14px;">
-        <div style="width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #059669, #047857); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.35);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-            <line x1="6" y1="2" x2="6" y2="4"></line>
-            <line x1="10" y1="2" x2="10" y2="4"></line>
-            <line x1="14" y1="2" x2="14" y2="4"></line>
-          </svg>
+      <!-- Instant Native Preloader (Seamless with React SplashScreen) -->
+      <div id="unifood-initial-loader" style="position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; background-color: #1c1917; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', Roboto, sans-serif; z-index: 9999; padding: 40px 24px 36px 24px; box-sizing: border-box; overflow: hidden; user-select: none;">
+        <!-- Ambient Appetizing Radial Glows (Identik dengan React SplashScreen) -->
+        <div style="position: absolute; top: -128px; right: -128px; width: 384px; height: 384px; border-radius: 9999px; background: rgba(16, 185, 129, 0.2); filter: blur(64px); pointer-events: none;"></div>
+        <div style="position: absolute; bottom: -128px; left: -128px; width: 384px; height: 384px; border-radius: 9999px; background: rgba(249, 115, 22, 0.15); filter: blur(64px); pointer-events: none;"></div>
+        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(6, 78, 59, 0.35) 0%, rgba(28, 25, 23, 0.9) 70%, #0c0a09 100%); pointer-events: none;"></div>
+
+        <!-- Top Campus Badge (Tanpa Titik Hijau) -->
+        <div style="position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; padding: 6px 14px; border-radius: 9999px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); font-size: 11px; font-weight: 500; color: #d6d3d1; letter-spacing: 0.02em;">
+          <span>Institut Bisnis dan Informatika Kwik Kian Gie</span>
         </div>
-        <div style="text-align: center;">
-          <h1 style="font-size: 17px; font-weight: 800; color: #0f172a; margin: 0; letter-spacing: -0.02em;">Unifood</h1>
-          <p style="font-size: 11px; font-weight: 500; color: #64748b; margin: 3px 0 0 0;">Kantin IBI Kwik Kian Gie</p>
+
+        <!-- Center Brand Emblem & Progress -->
+        <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; margin: auto 0;">
+          <!-- Official Unifood Logo Frame (No Bounce, Elegant Aura) -->
+          <div style="position: relative;">
+            <div style="position: absolute; inset: -16px; border-radius: 24px; background: linear-gradient(to top right, rgba(16,185,129,0.35), rgba(249,115,22,0.25)); filter: blur(20px);"></div>
+            <div style="position: relative; width: 96px; height: 96px; border-radius: 16px; background: linear-gradient(135deg, #292524, #1c1917); border: 2px solid rgba(52,211,153,0.4); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 12px; box-sizing: border-box;">
+              <img src="./logo.png" alt="Logo Unifood" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));" />
+            </div>
+            <!-- Verified Campus Chip -->
+            <div style="position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); padding: 2px 10px; border-radius: 9999px; background: #10b981; color: #ffffff; font-size: 10px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 4px 10px rgba(16,185,129,0.4);">
+              Hall D · Kantin
+            </div>
+          </div>
+
+          <!-- Titles & Rotating Placeholder -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <h1 style="font-size: 32px; font-weight: 900; letter-spacing: -0.03em; margin: 0; color: #ffffff; line-height: 1;">
+                Uni<span style="color: #34d399;">food</span>
+              </h1>
+              <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; background: rgba(249,115,22,0.2); color: #fdba74; border: 1px solid rgba(251,146,60,0.3);">
+                Kantin Digital
+              </span>
+            </div>
+            <p style="font-size: 13px; font-weight: 500; color: #d6d3d1; margin: 0;">
+              Pesan Makanan Tanpa Antre di Hall D
+            </p>
+          </div>
+
+          <!-- Progress Indicator Bar -->
+          <div style="width: 240px; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+            <div style="width: 100%; height: 6px; border-radius: 9999px; background: rgba(255,255,255,0.15); overflow: hidden; padding: 2px; box-sizing: border-box;">
+              <div style="height: 100%; border-radius: 9999px; background: linear-gradient(90deg, #34d399, #2dd4bf, #fbbf24); animation: progressSweep 1.2s ease-in-out infinite;"></div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 10px; color: #a8a29e; font-family: monospace;">
+              <span>Memuat data stan...</span>
+              <span style="font-weight: 700; color: #34d399;">...</span>
+            </div>
+          </div>
         </div>
-        <div style="width: 26px; height: 26px; border: 2.5px solid #e2e8f0; border-top-color: #059669; border-radius: 50%; animation: unifoodSpin 0.75s linear infinite; margin-top: 4px;"></div>
+
+        <!-- Bottom Tagline Pills -->
+        <div style="position: relative; z-index: 10; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #a8a29e; font-weight: 500;">
+          <span style="display: flex; align-items: center; gap: 4px;">
+            <span style="width: 6px; height: 6px; border-radius: 9999px; background: #34d399;"></span>
+            Bebas Antre
+          </span>
+          <span style="color: #57534e;">·</span>
+          <span style="display: flex; align-items: center; gap: 4px;">
+            <span style="width: 6px; height: 6px; border-radius: 9999px; background: #fbbf24;"></span>
+            Antrean Dapur
+          </span>
+          <span style="color: #57534e;">·</span>
+          <span style="display: flex; align-items: center; gap: 4px;">
+            <span style="width: 6px; height: 6px; border-radius: 9999px; background: #fb923c;"></span>
+            Jastip Kelas
+          </span>
+        </div>
+
         <style>
-          @keyframes unifoodSpin {
-            to { transform: rotate(360deg); }
+          @keyframes progressSweep {
+            0% { width: 15%; margin-left: 0%; }
+            50% { width: 65%; margin-left: 20%; }
+            100% { width: 100%; margin-left: 0%; }
           }
         </style>
       </div>

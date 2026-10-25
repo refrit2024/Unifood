@@ -915,10 +915,10 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
             {/* 4. EXPANDABLE FILTER ROW - Mixed with Pill Badges */}
             <div className="bg-white rounded-xl border border-stone-200/90 shadow-2xs overflow-hidden transition-all duration-200">
               {/* Primary Bar: Quick Filters & Actions */}
-              <div className="p-2 sm:px-3 sm:py-2 flex items-center justify-between gap-2 flex-wrap">
-                {/* Left: Filter Buttons */}
-                <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-                  <div className="hidden sm:flex items-center gap-1 text-[11px] font-bold text-stone-400 uppercase tracking-wider mr-0.5 select-none">
+              <div className="p-2 sm:px-3 sm:py-2.5 flex items-center justify-between gap-2">
+                {/* Left: Scrollable Quick Filter Pills on Mobile, flex-wrap on desktop */}
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 min-w-0 flex-1 sm:flex-wrap">
+                  <div className="hidden sm:flex items-center gap-1 text-[11px] font-bold text-stone-400 uppercase tracking-wider mr-0.5 select-none shrink-0">
                     <span className="material-symbols-outlined text-[15px] text-stone-400">filter_alt</span>
                     <span>Filter:</span>
                   </div>
@@ -927,7 +927,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setOnlyOpenFilter(!onlyOpenFilter)}
-                    className={`min-h-[32px] px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 border ${
+                    className={`min-h-[34px] px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 border whitespace-nowrap shrink-0 ${
                       onlyOpenFilter
                         ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-2xs font-bold'
                         : 'bg-stone-50 text-stone-600 border-stone-200 hover:bg-stone-100 hover:text-stone-900'
@@ -941,7 +941,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setPriceFilter(priceFilter === '<=15000' ? 'all' : '<=15000')}
-                    className={`min-h-[32px] px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 border ${
+                    className={`min-h-[34px] px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 border whitespace-nowrap shrink-0 ${
                       priceFilter === '<=15000'
                         ? 'bg-orange-50 text-orange-900 border-orange-300 font-bold shadow-2xs'
                         : 'bg-stone-50 text-stone-600 border-stone-200 hover:bg-stone-100 hover:text-stone-900'
@@ -955,7 +955,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
 
                   {/* Active filter summary tag if custom */}
                   {priceFilter !== 'all' && priceFilter !== '<=15000' && (
-                    <span className="inline-flex items-center gap-1 min-h-[32px] px-3 py-1 rounded-full bg-orange-50 text-orange-900 font-bold text-xs border border-orange-200">
+                    <span className="inline-flex items-center gap-1 min-h-[34px] px-3 py-1.5 rounded-full bg-orange-50 text-orange-900 font-bold text-xs border border-orange-200 whitespace-nowrap shrink-0">
                       <span className="material-symbols-outlined text-[13px] text-orange-600">sell</span>
                       <span>
                         {priceFilter === '<=10000'
@@ -969,7 +969,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
 
                   {/* Active distance filter tag if custom */}
                   {distanceFilter !== 'all' && (
-                    <span className="inline-flex items-center gap-1 min-h-[32px] px-3 py-1 rounded-full bg-emerald-50 text-emerald-900 font-bold text-xs border border-emerald-200">
+                    <span className="inline-flex items-center gap-1 min-h-[34px] px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-900 font-bold text-xs border border-emerald-200 whitespace-nowrap shrink-0">
                       <span className="material-symbols-outlined text-[13px] text-emerald-600">near_me</span>
                       <span>{distanceFilter === '<100m' ? '< 100m' : '< 500m'}</span>
                     </span>
@@ -980,7 +980,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                     <button
                       type="button"
                       onClick={resetAllFilters}
-                      className="min-h-[32px] px-3 py-1 rounded-full text-xs font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-all cursor-pointer flex items-center gap-1 active:scale-95"
+                      className="min-h-[34px] px-3 py-1.5 rounded-full text-xs font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-all cursor-pointer flex items-center gap-1 active:scale-95 whitespace-nowrap shrink-0"
                       title="Reset semua filter"
                     >
                       <span className="material-symbols-outlined text-[14px]">restart_alt</span>
@@ -989,12 +989,12 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                   )}
                 </div>
 
-                {/* Right: Expand Filter Button */}
-                <div className="flex items-center gap-2 shrink-0 ml-auto">
+                {/* Right: Expand Filter Button - Cleanly Anchored on Right */}
+                <div className="flex items-center gap-1.5 shrink-0 pl-1">
                   <button
                     type="button"
                     onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-                    className={`min-h-[32px] px-3.5 py-1 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95 border ${
+                    className={`min-h-[34px] px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95 border whitespace-nowrap ${
                       showAdvancedFilters || (distanceFilter !== 'all' || (priceFilter !== 'all' && priceFilter !== '<=15000'))
                         ? 'bg-stone-900 text-white border-stone-900 shadow-xs'
                         : 'bg-stone-100 hover:bg-stone-200/80 text-stone-700 border-stone-200'
@@ -1003,7 +1003,8 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                     <span className="material-symbols-outlined text-[15px]">
                       {showAdvancedFilters ? 'expand_less' : 'tune'}
                     </span>
-                    <span>{showAdvancedFilters ? 'Tutup' : 'Filter Lanjutan'}</span>
+                    <span className="hidden sm:inline">{showAdvancedFilters ? 'Tutup' : 'Filter Lanjutan'}</span>
+                    <span className="sm:hidden">{showAdvancedFilters ? 'Tutup' : 'Filter'}</span>
                     {(distanceFilter !== 'all' || (priceFilter !== 'all' && priceFilter !== '<=15000')) && (
                       <span className="w-4 h-4 rounded-full bg-emerald-500 text-white text-[10px] font-bold flex items-center justify-center ml-0.5">
                         {(distanceFilter !== 'all' ? 1 : 0) + (priceFilter !== 'all' && priceFilter !== '<=15000' ? 1 : 0)}
@@ -1015,15 +1016,22 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
 
               {/* Integrated Collapsible Advanced Filters Drawer */}
               {showAdvancedFilters && (
-                <div className="border-t border-stone-200/80 bg-stone-50/70 p-4 sm:p-5 flex flex-col gap-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="border-t border-stone-200/80 bg-stone-50/70 p-3.5 sm:p-5 flex flex-col gap-3.5 sm:gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-4">
                     {/* Distance Filter */}
-                    <div className="flex flex-col gap-1.5">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-stone-700">
-                        <span className="material-symbols-outlined text-[15px] text-emerald-600">location_on</span>
-                        <span>Jarak dari Kampus IBI KKG:</span>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center justify-between text-xs font-bold text-stone-700">
+                        <div className="flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-[16px] text-emerald-600">location_on</span>
+                          <span>Jarak dari Kampus IBI KKG:</span>
+                        </div>
+                        {distanceFilter !== 'all' && (
+                          <span className="text-[11px] font-semibold text-emerald-700">
+                            {distanceFilter}
+                          </span>
+                        )}
                       </div>
-                      <div className="flex gap-1.5 flex-wrap">
+                      <div className="grid grid-cols-3 gap-1.5 sm:flex sm:flex-wrap">
                         {[
                           { id: 'all', label: 'Semua Jarak' },
                           { id: '<100m', label: '< 100m' },
@@ -1033,43 +1041,61 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                             key={d.id}
                             type="button"
                             onClick={() => setDistanceFilter(d.id)}
-                            className={`min-h-[34px] px-3 py-1.5 rounded-xl text-xs font-semibold border cursor-pointer transition-all active:scale-95 ${
+                            className={`min-h-[36px] px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all active:scale-95 text-center flex items-center justify-center ${
                               distanceFilter === d.id
                                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs font-bold'
                                 : 'bg-white hover:bg-stone-100 text-stone-700 border-stone-200/90'
                             }`}
                           >
-                            {d.label}
+                            <span className="truncate">{d.label}</span>
                           </button>
                         ))}
                       </div>
                     </div>
 
                     {/* Price Bounds Filter */}
-                    <div className="flex flex-col gap-1.5 sm:col-span-2">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-stone-700">
-                        <span className="material-symbols-outlined text-[15px] text-orange-600">payments</span>
-                        <span>Batas Budget Kantong Mahasiswa:</span>
+                    <div className="flex flex-col gap-2 sm:col-span-2">
+                      <div className="flex items-center justify-between text-xs font-bold text-stone-700">
+                        <div className="flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-[16px] text-orange-600">payments</span>
+                          <span>Batas Budget Mahasiswa:</span>
+                        </div>
+                        {priceFilter !== 'all' && (
+                          <span className="text-[11px] font-semibold text-orange-700">
+                            {priceFilter === '<=10000'
+                              ? '≤ Rp10rb'
+                              : priceFilter === '10000-15000'
+                              ? 'Rp10rb–15rb'
+                              : priceFilter === '<=15000'
+                              ? '≤ Rp15rb'
+                              : 'Rp15rb–20rb'}
+                          </span>
+                        )}
                       </div>
-                      <div className="flex gap-1.5 flex-wrap">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap gap-1.5 sm:gap-2">
                         {[
-                          { id: 'all', label: 'Semua Harga' },
+                          { id: 'all', label: 'Semua Harga', isFullMobile: true },
                           { id: '<=10000', label: '≤ Rp10.000' },
-                          { id: '10000-15000', label: 'Rp10.000 – Rp15.000' },
+                          { id: '10000-15000', label: 'Rp10rb – Rp15rb' },
                           { id: '<=15000', label: '≤ Rp15.000' },
-                          { id: '15000-20000', label: 'Rp15.000 – Rp20.000' },
+                          { id: '15000-20000', label: 'Rp15rb – Rp20rb' },
                         ].map((p) => (
                           <button
                             key={p.id}
                             type="button"
                             onClick={() => setPriceFilter(p.id)}
-                            className={`min-h-[34px] px-3 py-1.5 rounded-xl text-xs font-semibold border cursor-pointer transition-all active:scale-95 ${
+                            className={`min-h-[36px] px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all active:scale-95 text-center flex items-center justify-center gap-1 ${
+                              p.isFullMobile ? 'col-span-2 sm:col-span-1' : ''
+                            } ${
                               priceFilter === p.id
                                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs font-bold'
                                 : 'bg-white hover:bg-stone-100 text-stone-700 border-stone-200/90'
                             }`}
                           >
-                            {p.label}
+                            {priceFilter === p.id && (
+                              <span className="material-symbols-outlined text-[14px]">check</span>
+                            )}
+                            <span className="truncate">{p.label}</span>
                           </button>
                         ))}
                       </div>
@@ -1077,19 +1103,31 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                   </div>
 
                   {/* Drawer Footer Status & Quick Actions */}
-                  <div className="pt-2 border-t border-stone-200/70 flex items-center justify-between text-xs text-stone-600">
-                    <span className="flex items-center gap-1.5">
-                      <span className="material-symbols-outlined text-[15px] text-emerald-600">storefront</span>
+                  <div className="pt-2.5 border-t border-stone-200/70 flex items-center justify-between gap-2 text-xs text-stone-600 flex-wrap">
+                    <span className="flex items-center gap-1.5 text-xs text-stone-600">
+                      <span className="material-symbols-outlined text-[16px] text-emerald-600">storefront</span>
                       <span>Menampilkan <strong className="text-stone-900 font-bold">{filteredStalls.length} stan</strong></span>
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => setShowAdvancedFilters(false)}
-                      className="text-emerald-700 hover:text-emerald-800 font-bold hover:underline cursor-pointer flex items-center gap-0.5"
-                    >
-                      <span>Tutup</span>
-                      <span className="material-symbols-outlined text-[14px]">expand_less</span>
-                    </button>
+                    <div className="flex items-center gap-2">
+                      {hasActiveFilters && (
+                        <button
+                          type="button"
+                          onClick={resetAllFilters}
+                          className="text-rose-600 hover:text-rose-700 font-semibold text-xs hover:underline cursor-pointer flex items-center gap-1 px-2 py-1 rounded-full hover:bg-rose-50"
+                        >
+                          <span className="material-symbols-outlined text-[14px]">restart_alt</span>
+                          <span>Reset</span>
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setShowAdvancedFilters(false)}
+                        className="min-h-[32px] px-3.5 py-1 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer shadow-xs active:scale-95 transition-all flex items-center gap-1"
+                      >
+                        <span>Terapkan</span>
+                        <span className="material-symbols-outlined text-[14px]">check</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -1111,8 +1149,8 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                       onClick={() => onSelectStall(stall.id)}
                       className="bg-white rounded-2xl p-3 shadow-xs border border-stone-200 hover:shadow-md hover:border-emerald-300 transition-all flex gap-3 cursor-pointer group"
                     >
-                      {/* Organic Leaf Shaped Food Thumbnail */}
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md overflow-hidden bg-slate-100 shrink-0 relative border border-slate-200/80 shadow-2xs">
+                      {/* Clean Food Thumbnail */}
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-slate-100 shrink-0 relative border border-slate-200/80 shadow-2xs">
                         <img
                           src={item.imageCatalog}
                           alt={item.altCatalog}
@@ -1140,8 +1178,8 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                         </div>
 
                         <div className="flex items-center justify-between pt-1">
-                          {/* Ticket Tag Shaped Price Badge */}
-                          <span className="text-xs sm:text-sm font-black text-emerald-800 bg-emerald-50 border border-emerald-200/90 pl-2.5 pr-2 py-0.5 rounded-l-full rounded-r-md">
+                          {/* Clean Price Badge */}
+                          <span className="text-xs sm:text-sm font-black text-emerald-800 bg-emerald-50 border border-emerald-200/90 px-2.5 py-0.5 rounded-full">
                             Rp {item.price.toLocaleString('id-ID')}
                           </span>
                           <span className="text-[11px] font-semibold text-slate-400 group-hover:text-emerald-700 flex items-center gap-0.5">
@@ -1212,7 +1250,10 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                         >
                           <div>
                             {/* Card Hero Image */}
-                            <div className="relative w-full h-44 sm:h-48 bg-slate-100 overflow-hidden">
+                            <div
+                              onClick={() => onSelectStall(stall.id)}
+                              className="relative w-full h-44 sm:h-48 bg-slate-100 overflow-hidden cursor-pointer"
+                            >
                               <img
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 alt={stall.bannerAlt}
@@ -1221,13 +1262,12 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                               />
 
                               {/* Subtle bottom gradient overlay for readability */}
-                              <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-black/20"></div>
+                              <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-black/25"></div>
 
-                              {/* Top Left Status Indicator - Stamp & Capsule Tags */}
+                              {/* Top Left Status Indicator - Sleek Capsule Tags */}
                               <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap">
-                                {/* Asymmetric Campus Seal Stamp Shape */}
                                 <span
-                                  className={`px-2.5 py-0.5 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs text-xs font-bold shadow-sm backdrop-blur-md ${
+                                  className={`px-3 py-0.5 rounded-full text-xs font-bold shadow-sm backdrop-blur-md ${
                                     stall.isOpen
                                       ? 'bg-emerald-600 text-white'
                                       : 'bg-slate-800/90 text-slate-200'
@@ -1244,18 +1284,21 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                 </span>
                               </div>
 
-                              {/* Favorite Button - Borderless Floating Emote */}
+                              {/* Favorite Button - Clean Frosted Circle */}
                               <button
                                 type="button"
                                 aria-label={`Simpan favorit ${stall.name}`}
-                                onClick={() => onToggleFavoriteStall(stall.id)}
-                                className="absolute top-2 right-2 p-2 flex items-center justify-center cursor-pointer active:scale-75 hover:scale-115 transition-transform duration-200 group/fav focus:outline-none z-10"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onToggleFavoriteStall(stall.id);
+                                }}
+                                className="absolute top-2.5 right-2.5 w-9 h-9 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center cursor-pointer active:scale-90 hover:scale-110 hover:bg-black/60 transition-all duration-200 text-white shadow-sm z-10"
                               >
                                 <span
-                                  className={`material-symbols-outlined text-[26px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.65)] transition-colors duration-200 ${
+                                  className={`material-symbols-outlined text-[20px] transition-colors duration-200 ${
                                     isFav
-                                      ? 'text-rose-500 scale-105'
-                                      : 'text-white/90 hover:text-rose-400 group-hover/fav:text-rose-300'
+                                      ? 'text-rose-500'
+                                      : 'text-white/95 hover:text-rose-300'
                                   }`}
                                   style={{
                                     fontVariationSettings: isFav ? "'FILL' 1" : "'FILL' 0",
@@ -1266,27 +1309,30 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                               </button>
 
                               {/* Bottom Overlay Info on Image */}
-                              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-white text-xs">
-                                {/* Ticket Tag Location Chip */}
-                                <span className="flex items-center gap-1 bg-black/65 backdrop-blur-xs pl-2 pr-2.5 py-0.5 rounded-l-full rounded-r-md font-medium text-[11px]">
-                                  <span className="material-symbols-outlined text-[13px] text-emerald-400">
+                              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-white text-xs gap-2">
+                                {/* Location Chip */}
+                                <span className="flex items-center gap-1 bg-black/65 backdrop-blur-md px-2.5 py-1 rounded-full font-medium text-[11px] truncate shadow-xs">
+                                  <span className="material-symbols-outlined text-[13px] text-emerald-400 shrink-0">
                                     location_on
                                   </span>
-                                  <span>{stall.locationDetail} · <span className="tabular-nums">{stall.distanceMeters}m</span></span>
+                                  <span className="truncate">Kantin Hall D ({stall.code || 'Stan 01'}) · <span className="tabular-nums">{stall.distanceMeters}m</span></span>
                                 </span>
 
-                                {/* Teardrop Pin Rating Badge */}
-                                <span className="flex items-center gap-1 bg-amber-400 text-slate-950 font-bold px-2.5 py-0.5 rounded-tl-full rounded-tr-full rounded-br-full rounded-bl-xs shadow-xs tabular-nums text-xs">
+                                {/* Rating Badge */}
+                                <span className="flex items-center gap-1 bg-amber-400 text-slate-950 font-bold px-2.5 py-1 rounded-full shadow-xs tabular-nums text-xs shrink-0">
                                   <span className="material-symbols-outlined text-[13px]">star</span>
                                   <span>{stall.rating}</span>
                                 </span>
                               </div>
                             </div>
 
-                            {/* Card Body - Varied & Spacious */}
+                            {/* Card Body */}
                             <div className="p-4 flex flex-col gap-3">
                               {/* Stall Identity & Specialty */}
-                              <div className="flex flex-col gap-1">
+                              <div
+                                onClick={() => onSelectStall(stall.id)}
+                                className="flex flex-col gap-1 cursor-pointer"
+                              >
                                 <div className="flex items-center justify-between gap-2">
                                   <div className="flex items-center gap-1.5 min-w-0">
                                     <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors truncate">
@@ -1304,9 +1350,8 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                     </span>
                                   </div>
 
-                                  {/* Asymmetric Student Banner */}
                                   {stall.isStudentEntrepreneur && (
-                                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-violet-700 bg-violet-50 border border-violet-200 pl-2 pr-2.5 py-0.5 rounded-r-full rounded-l-xs shrink-0">
+                                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-violet-700 bg-violet-50 border border-violet-200 px-2 py-0.5 rounded-full shrink-0">
                                       <span className="material-symbols-outlined text-[12px]">school</span>
                                       Usaha Mahasiswa
                                     </span>
@@ -1319,11 +1364,11 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
 
                                 {/* Location & Operating Hours */}
                                 <div className="flex items-center gap-2 text-[11px] text-slate-500 font-medium flex-wrap pt-0.5">
-                                  <span className="flex items-center gap-1 text-slate-700">
+                                  <span className="flex items-center gap-1 text-slate-700 font-medium">
                                     <span className="material-symbols-outlined text-[13px] text-slate-400">
                                       storefront
                                     </span>
-                                    {stall.building}
+                                    Kantin Hall D
                                   </span>
                                   <span aria-hidden="true" className="text-slate-300">·</span>
                                   <span className="flex items-center gap-1 text-slate-600">
@@ -1334,7 +1379,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                   </span>
                                   <span aria-hidden="true" className="text-slate-300">·</span>
                                   <span className="text-emerald-700 font-semibold">
-                                    {stall.menuItems.length} pilihan menu
+                                    {stall.menuItems.length} menu
                                   </span>
                                 </div>
                               </div>
@@ -1347,21 +1392,23 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                   </span>
                                   Tarif Resmi Stan
                                 </span>
-                                <div className="flex items-center gap-1.5 text-[10px] font-semibold text-slate-500">
-                                  {stall.paymentMethods && stall.paymentMethods.length > 0 ? (
-                                    <span className="text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">
-                                      {stall.paymentMethods.slice(0, 2).join(' / ')}
-                                      {stall.paymentMethods.length > 2 && ` +${stall.paymentMethods.length - 2}`}
-                                    </span>
-                                  ) : (
-                                    <span>QRIS / Tunai</span>
-                                  )}
+                                <div className="flex items-center gap-1.5">
+                                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                                    <span className="material-symbols-outlined text-[11px]">qr_code_2</span>
+                                    QRIS
+                                  </span>
+                                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600">
+                                    Tunai
+                                  </span>
                                 </div>
                               </div>
 
                               {/* Menu Andalan Preview */}
                               <div className="flex flex-col gap-1.5 pt-1">
-                                <div className="flex items-center justify-between">
+                                <div
+                                  onClick={() => onSelectStall(stall.id)}
+                                  className="flex items-center justify-between cursor-pointer"
+                                >
                                   <span className="text-xs font-bold text-slate-800 flex items-center gap-1">
                                     <span className="material-symbols-outlined text-[14px] text-amber-500">
                                       local_fire_department
@@ -1382,11 +1429,11 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                         e.stopPropagation();
                                         onSelectStall(stall.id);
                                       }}
-                                      className="group/item flex items-center gap-2.5 p-1.5 rounded-xl rounded-tr-xs bg-slate-50/80 hover:bg-emerald-50/70 border border-slate-200/70 hover:border-emerald-300 transition-all duration-150 cursor-pointer"
+                                      className="group/item flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/80 hover:bg-emerald-50/70 border border-slate-200/70 hover:border-emerald-300 transition-all duration-150 cursor-pointer"
                                       title={`Lihat detail ${item.name}`}
                                     >
-                                      {/* Mini Food Thumbnail - Organic Leaf Shape */}
-                                      <div className="relative w-11 h-11 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden bg-slate-200 shrink-0 border border-slate-200/80 shadow-2xs">
+                                      {/* Mini Food Thumbnail */}
+                                      <div className="relative w-11 h-11 rounded-lg overflow-hidden bg-slate-200 shrink-0 border border-slate-200/80 shadow-2xs">
                                         {item.imageCatalog ? (
                                           <img
                                             src={item.imageCatalog}
@@ -1421,8 +1468,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                                           <span className="capitalize">{item.category}</span>
                                           <span aria-hidden="true" className="text-slate-300">·</span>
                                           {item.status === 'ready' ? (
-                                            <span className="text-emerald-600 font-medium flex items-center gap-0.5">
-                                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+                                            <span className="text-emerald-600 font-medium">
                                               Tersedia
                                             </span>
                                           ) : (
@@ -1451,7 +1497,7 @@ export const KatalogScreen: React.FC<KatalogScreenProps> = ({
                             <button
                               type="button"
                               onClick={() => onSelectStall(stall.id)}
-                              className="w-full min-h-[42px] py-2 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-2xs cursor-pointer active:scale-95 transition-all"
+                              className="w-full min-h-[42px] py-2 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-2xs cursor-pointer active:scale-98 transition-all"
                             >
                               <span>Lihat Menu &amp; Pesan</span>
                               <span className="material-symbols-outlined text-[18px]">

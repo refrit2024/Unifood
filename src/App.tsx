@@ -30,6 +30,7 @@ import { DetailStanScreen } from './components/DetailStanScreen';
 import { KelolaMenuScreen } from './components/KelolaMenuScreen';
 import { AdminPortalScreen } from './components/AdminPortalScreen';
 import { UnifoodLogo } from './components/UnifoodLogo';
+import { SplashScreen } from './components/SplashScreen';
 import {
   checkActionCooldown,
   compressUploadedImage,
@@ -176,6 +177,21 @@ export default function App() {
   });
 
   const [studentSubTab, setStudentSubTab] = useState<StudentSubTab>('kantin');
+  const [showSplash, setShowSplash] = useState<boolean>(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        const hash = window.location.hash.toLowerCase();
+        // Skip splash if navigating directly to admin or scanning QR stall code
+        if (params.has('admin') || hash.includes('admin') || params.has('stan')) {
+          return false;
+        }
+      }
+    } catch {
+      // ignore
+    }
+    return true;
+  });
   const [historyStack, setHistoryStack] = useState<ScreenType[]>([]);
   const [selectedStallId, setSelectedStallId] = useState<string>(() => {
     try {
@@ -1697,6 +1713,13 @@ export default function App() {
       libraries={['marker', 'routes']}
     >
       <div className="bg-surface font-body-md text-on-surface flex flex-col min-h-screen w-full antialiased relative">
+        {/* Animated App Intro Splash Screen */}
+        {showSplash && (
+          <SplashScreen
+            minDurationMs={1500}
+            onFinish={() => setShowSplash(false)}
+          />
+        )}
         {gmpQuotaExceeded && (
           <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs md:text-sm text-center sticky top-0 z-50 shadow-sm">
             <span>
@@ -1724,7 +1747,7 @@ export default function App() {
               className="flex items-center text-left cursor-pointer min-h-[44px] group"
               aria-label="Unifood Beranda"
             >
-              <UnifoodLogo size="md" />
+              <UnifoodLogo size="md" badgeText="Kantin IBI KKG" />
             </button>
           </div>
 
@@ -1736,9 +1759,9 @@ export default function App() {
             <button
               type="button"
               onClick={() => navigateTo('katalog')}
-              className={`min-h-[38px] px-3.5 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
+              className={`min-h-[36px] px-3.5 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
                 currentScreen === 'katalog' || currentScreen === 'detail-stan'
-                  ? 'bg-emerald-600 text-white shadow-xs'
+                  ? 'bg-emerald-600 text-white shadow-xs font-bold'
                   : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/70'
               }`}
             >
@@ -1750,9 +1773,9 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('kelola-menu')}
-                className={`min-h-[38px] px-3.5 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
+                className={`min-h-[36px] px-3.5 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
                   currentScreen === 'kelola-menu'
-                    ? 'bg-emerald-600 text-white shadow-xs'
+                    ? 'bg-emerald-600 text-white shadow-xs font-bold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/70'
                 }`}
               >
@@ -1765,9 +1788,9 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('admin-portal')}
-                className={`min-h-[38px] px-3.5 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
+                className={`min-h-[36px] px-3.5 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
                   currentScreen === 'admin-portal'
-                    ? 'bg-emerald-600 text-white shadow-xs'
+                    ? 'bg-emerald-600 text-white shadow-xs font-bold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/70'
                 }`}
               >
@@ -1781,9 +1804,9 @@ export default function App() {
             <button
               type="button"
               onClick={() => setCurrentScreen('auth-portal')}
-              className={`min-h-[38px] px-3.5 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
+              className={`min-h-[36px] px-3.5 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
                 currentScreen === 'auth-portal'
-                  ? 'bg-emerald-600 text-white shadow-xs'
+                  ? 'bg-emerald-600 text-white shadow-xs font-bold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/70'
               }`}
             >
@@ -1794,33 +1817,42 @@ export default function App() {
             </button>
           </nav>
 
-          {/* Right Zone: Primary Actions & Mobile Hamburger Menu (Touch Target >= 44px) */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Right Zone: Primary Actions & Mobile Hamburger Menu */}
+          <div className="flex items-center gap-2.5 shrink-0">
             {loggedInSeller || isAdminLoggedIn ? (
-              <div className="hidden md:flex items-center gap-2 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200/80 text-xs">
-                <span className="text-emerald-950 font-semibold max-w-[140px] truncate">
+              <div className="hidden md:flex items-center gap-2 bg-slate-50/90 hover:bg-slate-100/90 h-[38px] px-3.5 py-1 rounded-full border border-slate-200 text-xs transition-colors">
+                <div className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[13px]">
+                    {loggedInSeller ? 'storefront' : 'admin_panel_settings'}
+                  </span>
+                </div>
+                <span className="text-slate-900 font-bold max-w-[140px] truncate">
                   {loggedInSeller ? loggedInSeller.stallName : 'Admin Sarpras'}
                 </span>
-                <span className="text-emerald-300">·</span>
+                <span className="text-slate-300">·</span>
                 <button
                   type="button"
                   onClick={handleLogoutSession}
-                  className="text-rose-600 hover:text-rose-700 hover:underline text-xs font-semibold cursor-pointer"
+                  className="text-slate-500 hover:text-rose-600 font-medium text-xs transition-colors cursor-pointer"
+                  title="Keluar sesi"
                 >
                   Keluar
                 </button>
               </div>
             ) : loggedInStudent ? (
-              <div className="hidden md:flex items-center gap-2 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200/90 text-xs">
-                <span className="material-symbols-outlined text-[16px] text-emerald-700">school</span>
-                <span className="text-emerald-950 font-semibold max-w-[130px] truncate">
+              <div className="hidden md:flex items-center gap-2 bg-slate-50/90 hover:bg-slate-100/90 h-[38px] px-3.5 py-1 rounded-full border border-slate-200 text-xs transition-colors">
+                <div className="w-5 h-5 rounded-full bg-emerald-600 text-white text-[11px] font-bold flex items-center justify-center shrink-0">
+                  {loggedInStudent.name ? loggedInStudent.name.charAt(0).toUpperCase() : 'M'}
+                </div>
+                <span className="text-slate-900 font-bold max-w-[130px] truncate">
                   {loggedInStudent.name}
                 </span>
-                <span className="text-emerald-300">·</span>
+                <span className="text-slate-300">·</span>
                 <button
                   type="button"
                   onClick={handleLogoutStudent}
-                  className="text-rose-600 hover:text-rose-700 hover:underline text-xs font-semibold cursor-pointer"
+                  className="text-slate-500 hover:text-rose-600 font-medium text-xs transition-colors cursor-pointer"
+                  title="Keluar dari akun"
                 >
                   Keluar
                 </button>
@@ -1829,7 +1861,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setCurrentScreen('auth-portal')}
-                className="hidden md:inline-flex min-h-[38px] px-4 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+                className="hidden md:inline-flex h-[38px] px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold items-center gap-1.5 transition-colors cursor-pointer shrink-0"
               >
                 <span className="material-symbols-outlined text-[16px]">school</span>
                 <span>Masuk Mahasiswa</span>
@@ -1839,7 +1871,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => setReportModalOpen(true)}
-              className="hidden sm:inline-flex min-h-[44px] px-4 py-2 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-semibold items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+              className="hidden sm:inline-flex h-[38px] px-3.5 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-semibold items-center gap-1.5 transition-colors cursor-pointer shrink-0"
             >
               <span className="material-symbols-outlined text-[16px] text-rose-600">gavel</span>
               <span>Lapor Harga</span>
@@ -2015,25 +2047,29 @@ export default function App() {
               </p>
 
               {/* Physical Campus Location & Hours Box */}
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col gap-2 text-xs">
-                <div className="flex items-start gap-2 text-slate-800">
-                  <span className="material-symbols-outlined text-[17px] text-emerald-600 shrink-0 mt-0.5">
-                    location_on
-                  </span>
+              <div className="p-3.5 rounded-xl bg-slate-50/80 border border-slate-200 flex flex-col gap-2.5 text-xs">
+                <div className="flex items-start gap-2.5 text-slate-800">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200/80 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="material-symbols-outlined text-[18px]">
+                      location_on
+                    </span>
+                  </div>
                   <div className="min-w-0">
-                    <span className="font-bold text-slate-900 block">Area Kantin Hall D (Lantai Dasar)</span>
-                    <span className="text-[11px] text-slate-500 block leading-tight">
+                    <span className="font-bold text-slate-900 block leading-tight">Area Kantin Hall D (Lantai Dasar)</span>
+                    <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
                       Jl. Yos Sudarso Kav. 87, Sunter Podomoro, Jakarta Utara 14350
                     </span>
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-slate-200/70 flex items-center justify-between flex-wrap gap-2 text-[11px]">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100/90 text-emerald-800 font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <div className="pt-2.5 border-t border-slate-200/70 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 text-[11px]">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold self-start sm:self-auto">
+                    <span className="material-symbols-outlined text-[13px] text-emerald-600">schedule</span>
                     Kantin Buka 07.30 – 17.00 WIB
                   </span>
-                  <span className="text-slate-500 text-[10px]">Senin – Jumat &amp; Sabtu Kelas Karyawan</span>
+                  <span className="text-slate-500 text-[10px] leading-tight">
+                    Senin – Jumat &amp; Sabtu (Kelas Karyawan)
+                  </span>
                 </div>
               </div>
             </div>

@@ -78,7 +78,7 @@ export const UnifoodLogo: React.FC<UnifoodLogoProps> = ({
           </span>
           {badgeText && (
             <span
-              className={`${sizeClasses.badge} font-bold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200/80 leading-none`}
+              className={`${sizeClasses.badge} font-bold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200/80 leading-none inline-flex items-center justify-center shrink-0`}
             >
               {badgeText}
             </span>
