@@ -56,14 +56,22 @@ export const UnifoodLogo: React.FC<UnifoodLogoProps> = ({
         {!imgError ? (
           <img
             src={UNIFOOD_LOGO_URL}
-            alt="Logo Unifood"
+            alt=""
+            loading="eager"
+            decoding="sync"
             referrerPolicy="no-referrer"
             onError={() => setImgError(true)}
             className="w-full h-full object-contain"
           />
         ) : (
-          <div className="w-full h-full bg-emerald-600 text-white rounded-xl flex items-center justify-center">
-            <span className="material-symbols-outlined text-[20px]">restaurant</span>
+          <div className="w-full h-full bg-emerald-600 text-white rounded-xl flex items-center justify-center p-1.5">
+            <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+              <line x1="6" y1="2" x2="6" y2="4" />
+              <line x1="10" y1="2" x2="10" y2="4" />
+              <line x1="14" y1="2" x2="14" y2="4" />
+            </svg>
           </div>
         )}
       </div>

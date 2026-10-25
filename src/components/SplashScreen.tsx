@@ -91,19 +91,25 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({
           {/* Ambient pulse halo */}
           <div className="absolute -inset-4 rounded-3xl bg-linear-to-tr from-emerald-500/40 to-orange-500/30 blur-xl animate-pulse"></div>
 
-          {/* Logo Frame - Steady & Elegant (No Bounce) */}
+          {/* Logo Frame - Steady & Elegant (No Bounce, Zero Ligature FOUT) */}
           <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-stone-800 to-stone-900 border-2 border-emerald-400/40 p-3 shadow-2xl flex items-center justify-center transition-transform">
             {!imgError ? (
               <img
                 src={UNIFOOD_LOGO_URL}
-                alt="Logo Unifood"
+                alt=""
+                loading="eager"
+                decoding="sync"
                 className="w-full h-full object-contain filter drop-shadow-md"
                 onError={() => setImgError(true)}
               />
             ) : (
-              <span className="material-symbols-outlined text-[44px] text-emerald-400">
-                restaurant
-              </span>
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="2" x2="6" y2="4" />
+                <line x1="10" y1="2" x2="10" y2="4" />
+                <line x1="14" y1="2" x2="14" y2="4" />
+              </svg>
             )}
           </div>
 
